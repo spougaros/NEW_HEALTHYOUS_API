@@ -9,10 +9,16 @@ function createTransporter(config) {
 const defaultConfig = {
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
+    secure: true,
     auth: {
         user: process.env.FROM_EMAIL,
         pass: process.env.EMAIL_PASS,
     },
+    tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false
+      }
+      
 };
 
 const sendEmail = async (email) => {
